@@ -1,16 +1,17 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-import time
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import mnist_forward
 import mnist_backward
-from PyQt5.QtCore import *
+# import sys
+# from PyQt5.QtWidgets import *
+
 TEST_INTERVAL_SECS = 5
 
 class TrainThread(QThread):
-    logOut = pyqtSignal(str)
+
     running = False
     def __init__(self):
         super().__init__()
@@ -54,7 +55,3 @@ class TrainThread(QThread):
                         print('No checkpoint file found')
                         self.logOut.emit("No checkpoint file found \n")
                         return
-                time.sleep(TEST_INTERVAL_SECS)
-
-    
-

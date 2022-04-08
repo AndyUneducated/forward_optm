@@ -15,12 +15,9 @@ STEPS = 50000
 MOVING_AVERAGE_DECAY = 0.99
 MODEL_SAVE_PATH="./model/"
 MODEL_NAME="mnist_model"
-import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
 
 class TrainBackwardThread(QThread):
-    logOutB = pyqtSignal(str)
+
     running = False
 
     def __init__(self):
@@ -77,10 +74,7 @@ class TrainBackwardThread(QThread):
                     else:
                         return
                     saver.save(sess, os.path.join(MODEL_SAVE_PATH, MODEL_NAME), global_step=global_step)
-                    
-                    
-                    
-                    
+
 
 def backward(mnist):
 
