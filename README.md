@@ -65,4 +65,9 @@ BN 步骤如下：
 
 BN 并不是适用于所有任务的，在 image-to-image 这样的任务中，尤其是超分辨率上，图像的绝对差异显得尤为重要，所以 batchnorm 的 scale 特性并不适合。
 
-## 
+## tensorfolding
+
+在 inference 阶段，BN layer 可以被预先计算 的 weight 捕捉，因此，BN layer 可以被代替。
+
+原先需要 3-5 pass，但经过 Fused BN，只需要一个 pass。BN 中的 mean、var 可以被 merge 到 kernel。（只需要修改公式，见原论文）。
+
